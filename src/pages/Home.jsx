@@ -1,0 +1,138 @@
+import { Shield, Maximize, PlayCircle, EyeOff, Navigation, HardDrive } from 'lucide-react';
+import './Home.css';
+
+export default function Home() {
+  return (
+    <div className="home">
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="container">
+          <div className="hero-content">
+            <div className="badge animate-fade-in">v1.0 is here</div>
+            <h1 className="animate-fade-in delay-100">
+              Built for <span className="text-gradient">Privacy</span>, <br />
+              Designed for You
+            </h1>
+            <p className="hero-subtitle animate-fade-in delay-200">
+              A premium desktop multimedia viewer that puts you in complete control. 
+              No cloud uploads, no tracking. Just your photos and videos, beautifully displayed.
+            </p>
+            <div className="hero-actions animate-fade-in delay-300">
+              <button className="btn btn-primary">Start Free Trial</button>
+              <button className="btn btn-secondary">Learn More</button>
+            </div>
+          </div>
+          
+          <div className="hero-visual animate-fade-in delay-300">
+            <div className="app-mockup glass-panel">
+              {/* Using a placeholder gradient for the image that we might replace with a generated mockup, 
+                  but CSS gradients give a beautiful aesthetic by default. */}
+              <div className="mockup-header">
+                <div className="window-controls">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div className="mockup-body">
+                 <div className="mockup-image-grid">
+                    <div className="grid-item large"></div>
+                    <div className="grid-item"></div>
+                    <div className="grid-item"></div>
+                 </div>
+              </div>
+            </div>
+            {/* Glow effect */}
+            <div className="glow-effect"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="features">
+        <div className="container">
+          <div className="section-header">
+            <h2>Experience Media Like Never Before</h2>
+            <p>Powerful features wrapped in an elegant interface.</p>
+          </div>
+          
+          <div className="grid grid-cols-3">
+            <div className="feature-card glass-panel">
+              <div className="feature-icon"><Shield /></div>
+              <h3>Total Privacy</h3>
+              <p>flxks never uploads your media to the cloud, never tracks viewing habits, and never shares data with third parties.</p>
+            </div>
+            <div className="feature-card glass-panel">
+              <div className="feature-icon"><HardDrive /></div>
+              <h3>Stays on Device</h3>
+              <p>Everything stays on your local device, under your control. We respect your precious memories.</p>
+            </div>
+            <div className="feature-card glass-panel">
+              <div className="feature-icon"><Maximize /></div>
+              <h3>Extensive Size Handling</h3>
+              <p>Perfectly optimized for media of all sizes. View high-resolution panoramas and massive video files flawlessly.</p>
+            </div>
+            <div className="feature-card glass-panel">
+              <div className="feature-icon"><PlayCircle /></div>
+              <h3>Smart Auto-Play</h3>
+              <p>Seamlessly transition between videos and photos with intelligent auto-play functionality.</p>
+            </div>
+            <div className="feature-card glass-panel">
+              <div className="feature-icon"><Navigation /></div>
+              <h3>Intuitive Navigation</h3>
+              <p>Navigate through thousands of files instantly with keyboard shortcuts and fluid mouse gestures.</p>
+            </div>
+            <div className="feature-card glass-panel">
+              <div className="feature-icon"><EyeOff /></div>
+              <h3>Distraction-Free</h3>
+              <p>A beautifully minimalist interface that fades away so your content can take center stage.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof Section */}
+      <section className="social-proof">
+        <div className="container">
+          <div className="glass-panel text-center cta-panel">
+            <h2>Ready to take control of your media?</h2>
+            <p className="cta-subtitle">Join thousands of users who trust flxks with their precious memories.</p>
+            <button className="btn btn-primary">Start Free Trial</button>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="pricing">
+        <div className="container">
+          <div className="section-header">
+            <h2>Simple, Transparent Pricing</h2>
+            <p>Premium features without the premium price tag.</p>
+          </div>
+          
+          <div className="pricing-card glass-panel">
+            <div className="pricing-header">
+              <h3>Monthly Subscription</h3>
+              <div className="price">
+                <span className="currency">$</span>
+                <span className="amount">6.99</span>
+                <span className="period">/mo</span>
+              </div>
+              <p className="currency-note">USD</p>
+            </div>
+            <div className="pricing-features">
+              <ul>
+                <li><Shield className="check-icon"/> Unlimited media viewing</li>
+                <li><Shield className="check-icon"/> All display and navigation features</li>
+                <li><Shield className="check-icon"/> Future updates included</li>
+                <li><Shield className="check-icon"/> 100% Privacy guaranteed</li>
+              </ul>
+            </div>
+            <div className="pricing-actions">
+              <button className="btn btn-primary w-full">Subscribe Now</button>
+              <p className="commitment-note">No commitment • Cancel anytime<br/>Finish out the month without renewal.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
