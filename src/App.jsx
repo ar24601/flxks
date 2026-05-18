@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import Home from './pages/Home';
-import Privacy from './pages/Privacy';
-import Terms from './pages/Terms';
-import ReturnPolicy from './pages/ReturnPolicy';
+import Layout from './components/Layout.jsx';
+import Home from './pages/Home.jsx';
+import Privacy from './pages/Privacy.jsx';
+import Terms from './pages/Terms.jsx';
+import ReturnPolicy from './pages/ReturnPolicy.jsx';
 
 function App() {
   return (

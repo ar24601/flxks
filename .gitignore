@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Add to the bottom of .gitignore (Optional)
+.env
+.env.*
+!.env.example
