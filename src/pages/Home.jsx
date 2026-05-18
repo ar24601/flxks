@@ -1,4 +1,5 @@
 import { Shield, Maximize, PlayCircle, EyeOff, Navigation, HardDrive } from 'lucide-react';
+import { openCheckout } from '../components/PaddleCheckout.jsx';
 import './Home.css';
 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
               No cloud uploads, no tracking. Just your photos and videos, beautifully displayed.
             </p>
             <div className="hero-actions animate-fade-in delay-300">
-              <button className="btn btn-primary">Start Free Trial</button>
+              <button className="btn btn-primary" onClick={openCheckout}>Start Free Trial</button>
               <button className="btn btn-secondary">Learn More</button>
             </div>
           </div>
@@ -95,7 +96,7 @@ export default function Home() {
           <div className="glass-panel text-center cta-panel">
             <h2>Ready to take control of your media?</h2>
             <p className="cta-subtitle">Join thousands of users who trust flxks with their precious memories.</p>
-            <button className="btn btn-primary">Start Free Trial</button>
+            <button className="btn btn-primary" onClick={openCheckout}>Start Free Trial</button>
           </div>
         </div>
       </section>
@@ -127,7 +128,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="pricing-actions">
-              <button className="btn btn-primary w-full">Subscribe Now</button>
+              <button className="btn btn-primary w-full" onClick={openCheckout}>Subscribe Now</button>
               <p className="commitment-note">No commitment • Cancel anytime<br/>Finish out the month without renewal.</p>
             </div>
           </div>

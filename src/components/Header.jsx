@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Layers } from 'lucide-react';
+import { openCheckout } from './PaddleCheckout.jsx';
 import './Header.css';
 
 export default function Header() {
@@ -42,7 +43,7 @@ export default function Header() {
           >
             Pricing
           </Link>
-          <button className="btn btn-primary btn-sm">Get flxks</button>
+          <button className="btn btn-primary btn-sm" onClick={openCheckout}>Get flxks</button>
         </nav>
       </div>
     </header>
