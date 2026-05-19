@@ -71,19 +71,32 @@ app.post('/api/generate-license', async (req, res) => {
       auth: { user: process.env.SMTP_USER, pass: smtpPass },
     });
 
-    await transporter.sendMail({
-      from: `"Support" <${process.env.SMTP_USER}>`,
-      to: email,
-      subject: "Your License Key",
-      text: "Please find your license key attached.",
-      attachments: [{
-        filename: 'license.flxkskey', // Updated extension for flxks
-        content: licenseContent,
-        contentType: 'application/json'
-      }]
-    });
+    let emailSuccess = true;
+    let emailError = null;
 
-    return res.json({ success: true });
+    try {
+      await transporter.sendMail({
+        from: `"Support" <${process.env.SMTP_USER}>`,
+        to: email,
+        subject: "Your License Key",
+        text: "Please find your license key attached.",
+        attachments: [{
+          filename: 'license.flxkskey',
+          content: licenseContent,
+          contentType: 'application/json'
+        }]
+      });
+    } catch (emailErr) {
+      console.error('Email failed to send:', emailErr);
+      emailSuccess = false;
+      emailError = emailErr.message || String(emailErr);
+    }
+
+    return res.json({ 
+      success: true, 
+      email_sent: emailSuccess, 
+      email_error: emailError 
+    });
     
   } catch (error) {
     console.error('Error:', error);
