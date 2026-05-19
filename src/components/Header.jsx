@@ -5,6 +5,7 @@ import './Header.css';
 
 export default function Header() {
   const location = useLocation();
+  const purchaseOnline = import.meta.env.VITE_FLXKS_PURCHASE_ONLINE !== 'False' && import.meta.env.VITE_FLXKS_PURCHASE_ONLINE !== 'false';
 
   const handleNavClick = (e, hash) => {
     // If we are already on the home page, prevent default and manually scroll
@@ -36,14 +37,20 @@ export default function Header() {
           >
             Features
           </Link>
-          <Link 
-            to="/#pricing" 
-            className="nav-link"
-            onClick={(e) => handleNavClick(e, 'pricing')}
-          >
-            Pricing
-          </Link>
-          <button className="btn btn-primary btn-sm" onClick={openCheckout}>Get flxks</button>
+          {purchaseOnline && (
+            <Link 
+              to="/#pricing" 
+              className="nav-link"
+              onClick={(e) => handleNavClick(e, 'pricing')}
+            >
+              Pricing
+            </Link>
+          )}
+          {purchaseOnline ? (
+            <button className="btn btn-primary btn-sm" onClick={openCheckout}>Get flxks</button>
+          ) : (
+            <button className="btn btn-primary btn-sm" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download flxks</button>
+          )}
         </nav>
       </div>
     </header>
