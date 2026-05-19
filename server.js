@@ -60,7 +60,6 @@ app.post('/api/generate-license', async (req, res) => {
     const licenseContent = JSON.stringify({ data: licenseData, signature }, null, 2);
 
     // 4. Send Email via SMTP
-    /*
     const smtpPass = process.env.SMTP_PASS_B64 
       ? Buffer.from(process.env.SMTP_PASS_B64, 'base64').toString('ascii').trim() 
       : (process.env.SMTP_PASS || '');
@@ -78,12 +77,11 @@ app.post('/api/generate-license', async (req, res) => {
       subject: "Your License Key",
       text: "Please find your license key attached.",
       attachments: [{
-        filename: 'license.mwkey', // Change extension to match your app configuration
+        filename: 'license.flxkskey', // Updated extension for flxks
         content: licenseContent,
         contentType: 'application/json'
       }]
     });
-    */
 
     return res.json({ success: true });
     

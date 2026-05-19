@@ -1,4 +1,12 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+require __DIR__ . '/PHPMailer/Exception.php';
+require __DIR__ . '/PHPMailer/PHPMailer.php';
+require __DIR__ . '/PHPMailer/SMTP.php';
+
 header('Content-Type: application/json');
 
 // Handle CORS
@@ -107,6 +115,62 @@ $licenseContent = json_encode([
     'signature' => $signature
 ], JSON_PRETTY_PRINT);
 
-// SMTP sending would go here...
+// 4. Send Email via PHPMailer
+$smtpHost = getenv('SMTP_HOST') ?: $_ENV['SMTP_HOST'] ?? 'smtp.dreamhost.com';
+$smtpPort = getenv('SMTP_PORT') ?: $_ENV['SMTP_PORT'] ?? 465;
+$smtpUser = getenv('SMTP_USER') ?: $_ENV['SMTP_USER'] ?? 'support@flxks.com';
+$smtpPassB64 = getenv('SMTP_PASS_B64') ?: $_ENV['SMTP_PASS_B64'] ?? '';
+$smtpPass = $smtpPassB64 ? base64_decode($smtpPassB64) : (getenv('SMTP_PASS') ?: $_ENV['SMTP_PASS'] ?? '');
+
+$mail = new PHPMailer(true);
+
+try {
+    $mail->isSMTP();
+    $mail->Host       = $smtpHost;
+    $mail->SMTPAuth   = true;
+    $mail->Username   = $smtpUser;
+    $mail->Password   = $smtpPass;
+    $mail->SMTPSecure = $smtpPort == 465 ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = $smtpPort;
+
+    // Recipients
+    $mail->setFrom($smtpUser, 'flxks Support');
+    $mail->addAddress($email);
+
+    // Attachments
+    $mail->addStringAttachment($licenseContent, 'license.flxkskey', 'base64', 'application/json');
+
+    // Content
+    $mail->isHTML(true);
+    $mail->Subject = 'Your flxks License Key & Download Instructions';
+    
+    $mail->Body = '
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+        <h2 style="color: #6366f1;">Welcome to flxks!</h2>
+        <p>Thank you for purchasing flxks. We are thrilled to have you on board.</p>
+        <p>Attached to this email is your personal license key: <strong>license.flxkskey</strong>.</p>
+        
+        <h3>How to get started:</h3>
+        <ol style="line-height: 1.6;">
+            <li>Download the flxks application from our website.</li>
+            <li>Install and launch the app on your device.</li>
+            <li>When prompted, drag and drop the attached <code>license.flxkskey</code> file into the app, or select it through the activation menu.</li>
+        </ol>
+        
+        <p>If you have any questions or run into issues, simply reply to this email.</p>
+        
+        <p>Enjoy your complete control over your media!</p>
+        <p>— The flxks Team</p>
+    </div>';
+
+    $mail->AltBody = "Welcome to flxks!\n\nThank you for purchasing flxks. Attached to this email is your personal license key: license.flxkskey.\n\nHow to get started:\n1. Download the flxks application from our website.\n2. Install and launch the app.\n3. Import the attached license.flxkskey file to activate.\n\nEnjoy!\n— The flxks Team";
+
+    $mail->send();
+} catch (Exception $e) {
+    error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+    http_response_code(500);
+    echo json_encode(['error' => 'Failed to send license email. Please contact support.']);
+    exit;
+}
 
 echo json_encode(['success' => true]);
