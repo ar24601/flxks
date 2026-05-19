@@ -1,6 +1,11 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Route API requests to PHP files
+  RewriteRule ^api/verify-transaction/(.*)$ api/verify-transaction.php?transaction_id=$1 [L,QSA]
+  RewriteRule ^api/generate-license/?$ api/generate-license.php [L,QSA]
+
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

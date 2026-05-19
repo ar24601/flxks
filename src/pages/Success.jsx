@@ -20,6 +20,11 @@ export default function Success() {
     async function verifyTransaction() {
       try {
         const response = await fetch(`/api/verify-transaction/${transactionId}`);
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Server did not return a valid API response. (Are you running the Node server?)");
+        }
+
         const result = await response.json();
         
         if (!response.ok) {
