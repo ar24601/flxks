@@ -36,27 +36,14 @@ if ($envFile) {
     }
 }
 
-echo "DEBUG: Dumping all MTP environment variables found on the server...\n";
-foreach ($_SERVER as $key => $val) {
-    if (strpos($key, 'MTP') !== false) {
-        echo "Found in \$_SERVER: {$key} = " . ($key === 'MTP_PASS_B64' ? '***HIDDEN***' : $val) . "\n";
-    }
-}
-foreach (getenv() as $key => $val) {
-    if (strpos($key, 'MTP') !== false) {
-        echo "Found in getenv(): {$key} = " . ($key === 'MTP_PASS_B64' ? '***HIDDEN***' : $val) . "\n";
-    }
-}
-echo "----------------------------------------\n";
-
-$smtpHost = getenv('MTP_HOST') ?: $_SERVER['MTP_HOST'] ?: $_ENV['MTP_HOST'] ?? 'smtp.dreamhost.com';
-$smtpPort = getenv('MTP_PORT') ?: $_SERVER['MTP_PORT'] ?: $_ENV['MTP_PORT'] ?? 465;
-$smtpUser = getenv('MTP_USER') ?: $_SERVER['MTP_USER'] ?: $_ENV['MTP_USER'] ?? 'support@flxks.com';
-$smtpPassB64 = getenv('MTP_PASS_B64') ?: $_SERVER['MTP_PASS_B64'] ?: $_ENV['MTP_PASS_B64'] ?? '';
-$smtpPass = $smtpPassB64 ? base64_decode($smtpPassB64) : (getenv('MTP_PASS') ?: $_SERVER['MTP_PASS'] ?: $_ENV['MTP_PASS'] ?? '');
+$smtpHost = getenv('SMTP_HOST') ?: $_SERVER['SMTP_HOST'] ?: $_ENV['SMTP_HOST'] ?? 'smtp.dreamhost.com';
+$smtpPort = getenv('SMTP_PORT') ?: $_SERVER['SMTP_PORT'] ?: $_ENV['SMTP_PORT'] ?? 465;
+$smtpUser = getenv('SMTP_USER') ?: $_SERVER['SMTP_USER'] ?: $_ENV['SMTP_USER'] ?? 'support@flxks.com';
+$smtpPassB64 = getenv('SMTP_PASS_B64') ?: $_SERVER['SMTP_PASS_B64'] ?: $_ENV['SMTP_PASS_B64'] ?? '';
+$smtpPass = $smtpPassB64 ? base64_decode($smtpPassB64) : (getenv('SMTP_PASS') ?: $_SERVER['SMTP_PASS'] ?: $_ENV['SMTP_PASS'] ?? '');
 
 if (!$smtpPass) {
-    echo "ERROR: No SMTP password found. PHP cannot see the environment variable.\n";
+    echo "ERROR: No SMTP password found. Please ensure SMTP_PASS_B64 is set in your .htaccess file.\n";
     exit;
 }
 

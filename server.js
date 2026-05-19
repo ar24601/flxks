@@ -60,15 +60,15 @@ app.post('/api/generate-license', async (req, res) => {
     const licenseContent = JSON.stringify({ data: licenseData, signature }, null, 2);
 
     // 4. Send Email via SMTP
-    const smtpPass = process.env.MTP_PASS_B64 
-      ? Buffer.from(process.env.MTP_PASS_B64, 'base64').toString('ascii').trim() 
-      : (process.env.MTP_PASS || '');
+    const smtpPass = process.env.SMTP_PASS_B64 
+      ? Buffer.from(process.env.SMTP_PASS_B64, 'base64').toString('ascii').trim() 
+      : (process.env.SMTP_PASS || '');
 
     const transporter = nodemailer.createTransport({
-      host: process.env.MTP_HOST,
-      port: Number(process.env.MTP_PORT) || 465,
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT) || 465,
       secure: true,
-      auth: { user: process.env.MTP_USER, pass: smtpPass },
+      auth: { user: process.env.SMTP_USER, pass: smtpPass },
     });
 
     let emailSuccess = true;
@@ -76,7 +76,7 @@ app.post('/api/generate-license', async (req, res) => {
 
     try {
       await transporter.sendMail({
-        from: `"Support" <${process.env.MTP_USER}>`,
+        from: `"Support" <${process.env.SMTP_USER}>`,
         to: email,
         subject: "Your License Key",
         text: "Please find your license key attached.",

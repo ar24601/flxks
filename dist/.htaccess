@@ -2,6 +2,12 @@
   RewriteEngine On
   RewriteBase /
 
+  # Hostinger Environment Variables for PHP
+  SetEnv SMTP_HOST smtp.dreamhost.com
+  SetEnv SMTP_PORT 465
+  SetEnv SMTP_USER support@flxks.com
+  SetEnv SMTP_PASS_B64 ZnV4cW9iIy1oZXN3YXotNnF1Z1Z5JQ==
+
   # Route API requests to PHP files
   RewriteRule ^api/verify-transaction/(.*)$ api/verify-transaction.php?transaction_id=$1 [L,QSA]
   RewriteRule ^api/generate-license/?$ api/generate-license.php [L,QSA]
