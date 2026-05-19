@@ -116,11 +116,11 @@ $licenseContent = json_encode([
 ], JSON_PRETTY_PRINT);
 
 // 4. Send Email via PHPMailer
-$smtpHost = getenv('SMTP_HOST') ?: $_ENV['SMTP_HOST'] ?? 'smtp.dreamhost.com';
-$smtpPort = getenv('SMTP_PORT') ?: $_ENV['SMTP_PORT'] ?? 465;
-$smtpUser = getenv('SMTP_USER') ?: $_ENV['SMTP_USER'] ?? 'support@flxks.com';
-$smtpPassB64 = getenv('SMTP_PASS_B64') ?: $_ENV['SMTP_PASS_B64'] ?? '';
-$smtpPass = $smtpPassB64 ? base64_decode($smtpPassB64) : (getenv('SMTP_PASS') ?: $_ENV['SMTP_PASS'] ?? '');
+$smtpHost = getenv('MTP_HOST') ?: $_ENV['MTP_HOST'] ?? 'smtp.dreamhost.com';
+$smtpPort = getenv('MTP_PORT') ?: $_ENV['MTP_PORT'] ?? 465;
+$smtpUser = getenv('MTP_USER') ?: $_ENV['MTP_USER'] ?? 'support@flxks.com';
+$smtpPassB64 = getenv('MTP_PASS_B64') ?: $_ENV['MTP_PASS_B64'] ?? '';
+$smtpPass = $smtpPassB64 ? base64_decode($smtpPassB64) : (getenv('MTP_PASS') ?: $_ENV['MTP_PASS'] ?? '');
 
 $mail = new PHPMailer(true);
 
