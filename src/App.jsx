@@ -4,6 +4,7 @@ import Home from './pages/Home.jsx';
 import Privacy from './pages/Privacy.jsx';
 import Terms from './pages/Terms.jsx';
 import ReturnPolicy from './pages/ReturnPolicy.jsx';
+import Success from './pages/Success.jsx';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="privacy" element={<Privacy />} />
         <Route path="terms" element={<Terms />} />
         <Route path="returns" element={<ReturnPolicy />} />
+        <Route path="success" element={<Success />} />
       </Route>
     </Routes>
   );

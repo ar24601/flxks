@@ -93,6 +93,38 @@ app.post('/api/generate-license', async (req, res) => {
   }
 });
 
+app.get('/api/verify-transaction/:transaction_id', async (req, res) => {
+  try {
+    const { transaction_id } = req.params;
+    
+    if (!transaction_id) {
+      return res.status(400).json({ error: 'Missing transaction_id' });
+    }
+
+    const response = await fetch(`https://sandbox-api.paddle.com/transactions/${transaction_id}?include=customer`, {
+      headers: { Authorization: `Bearer ${process.env.PADDLE_API_KEY}` },
+    });
+
+    if (!response.ok) {
+      return res.status(400).json({ error: 'Failed to verify transaction' });
+    }
+
+    const paddleData = await response.json();
+    const transaction = paddleData.data;
+
+    if (!['completed', 'paid', 'ready'].includes(transaction.status)) {
+      return res.status(400).json({ error: 'Transaction is not completed' });
+    }
+
+    const email = transaction.customer?.email || transaction.details?.customer?.email || null;
+
+    return res.json({ success: true, email, status: transaction.status });
+  } catch (error) {
+    console.error('Error verifying transaction:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

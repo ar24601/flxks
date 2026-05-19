@@ -45,7 +45,7 @@ async function handleCheckoutCompleted(data) {
     }
 
     // Redirect on success
-    window.location.href = `/download?txn=${transactionId}`;
+    window.location.href = `/success?txn=${transactionId}`;
   } catch (err) {
     console.error('Network error during license generation:', err);
   }
