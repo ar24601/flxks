@@ -1,8 +1,7 @@
 .header {
-  position: fixed;
+  position: sticky;
   top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 1rem auto 2rem auto;
   width: calc(100% - 2rem);
   max-width: 1200px;
   z-index: 1000;

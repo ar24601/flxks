@@ -1,9 +1,9 @@
 /* Hero Section */
 .hero {
-  min-height: 100vh;
+  min-height: calc(100vh - 6rem);
   display: flex;
   align-items: center;
-  padding-top: var(--spacing-xl);
+  padding-top: var(--spacing-md);
   overflow: hidden;
   position: relative;
 }
