@@ -39,13 +39,18 @@ async function handleCheckoutCompleted(data) {
       body: JSON.stringify({ transaction_id: transactionId }),
     });
 
-    if (!response.ok) {
-      alert('Payment succeeded, but there was an error emailing your license key.');
-      return;
+    const result = await response.json();
+    
+    if (!response.ok || !result.success) {
+      alert('Payment succeeded, but there was a server error processing your license.');
     }
 
-    // Redirect on success
-    window.location.href = `/success?txn=${transactionId}`;
+    // Redirect on success, optionally passing email error for debugging
+    let redirectUrl = `/success?txn=${transactionId}`;
+    if (result.email_sent === false && result.email_error) {
+      redirectUrl += `&email_err=${encodeURIComponent(result.email_error)}`;
+    }
+    window.location.href = redirectUrl;
   } catch (err) {
     console.error('Network error during license generation:', err);
   }

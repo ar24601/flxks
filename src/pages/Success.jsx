@@ -5,6 +5,7 @@ import './Home.css'; // Reuse existing styles if available
 export default function Success() {
   const [searchParams] = useSearchParams();
   const transactionId = searchParams.get('txn');
+  const emailErr = searchParams.get('email_err');
   
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -82,6 +83,15 @@ export default function Success() {
             <p style={{ marginTop: '2rem', color: '#a0aec0' }}>
               Your license key and download instructions have been generated.
             </p>
+            
+            {emailErr && (
+              <div style={{ marginTop: '1.5rem', background: 'rgba(255, 170, 0, 0.1)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255, 170, 0, 0.3)', textAlign: 'left' }}>
+                <p style={{ color: '#fbbf24', margin: '0 0 0.5rem 0', fontWeight: 'bold' }}>⚠️ Email Delivery Failed</p>
+                <p style={{ color: '#d1d5db', fontSize: '0.9rem', margin: 0, fontFamily: 'monospace', wordBreak: 'break-word' }}>
+                  {emailErr}
+                </p>
+              </div>
+            )}
             
             <Link to="/" className="cta-button" style={{ marginTop: '1.5rem', display: 'inline-block' }}>
               Return Home

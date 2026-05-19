@@ -166,11 +166,16 @@ try {
     $mail->AltBody = "Welcome to flxks!\n\nThank you for purchasing flxks. Attached to this email is your personal license key: license.flxkskey.\n\nHow to get started:\n1. Download the flxks application from our website.\n2. Install and launch the app.\n3. Import the attached license.flxkskey file to activate.\n\nEnjoy!\n— The flxks Team";
 
     $mail->send();
+    $emailSuccess = true;
+    $emailError = null;
 } catch (Exception $e) {
-    error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
-    http_response_code(500);
-    echo json_encode(['error' => 'Failed to send license email. Please contact support.']);
-    exit;
+    $emailSuccess = false;
+    $emailError = "Mailer Error: {$mail->ErrorInfo}";
+    error_log("Message could not be sent. " . $emailError);
 }
 
-echo json_encode(['success' => true]);
+echo json_encode([
+    'success' => true,
+    'email_sent' => $emailSuccess,
+    'email_error' => $emailError
+]);
