@@ -45,6 +45,10 @@ async function handleCheckoutCompleted(data) {
       alert('Payment succeeded, but there was a server error processing your license.');
     }
 
+    if (result.license_file) {
+      sessionStorage.setItem(`license_${transactionId}`, result.license_file);
+    }
+
     // Redirect on success, optionally passing email error for debugging
     let redirectUrl = `/success?txn=${transactionId}`;
     if (result.email_sent === false && result.email_error) {

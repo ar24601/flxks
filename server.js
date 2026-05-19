@@ -95,7 +95,8 @@ app.post('/api/generate-license', async (req, res) => {
     return res.json({ 
       success: true, 
       email_sent: emailSuccess, 
-      email_error: emailError 
+      email_error: emailError,
+      license_file: licenseContent
     });
     
   } catch (error) {

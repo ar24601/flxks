@@ -7,6 +7,8 @@ export default function Success() {
   const transactionId = searchParams.get('txn');
   const emailErr = searchParams.get('email_err');
   
+  const licenseFile = transactionId ? sessionStorage.getItem(`license_${transactionId}`) : null;
+
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -18,7 +20,7 @@ export default function Success() {
       return;
     }
 
-    async function verifyTransaction() {
+    const verifyTransaction = async () => {
       try {
         const response = await fetch(`/api/verify-transaction/${transactionId}`);
         const contentType = response.headers.get("content-type");
@@ -90,12 +92,37 @@ export default function Success() {
                 <p style={{ color: '#d1d5db', fontSize: '0.9rem', margin: 0, fontFamily: 'monospace', wordBreak: 'break-word' }}>
                   {emailErr}
                 </p>
+                {licenseFile && (
+                  <p style={{ color: '#fbbf24', fontSize: '0.9rem', marginTop: '0.75rem', marginBottom: 0 }}>
+                    Don't worry! You can still download your license key directly using the button below.
+                  </p>
+                )}
               </div>
             )}
             
-            <Link to="/" className="cta-button" style={{ marginTop: '1.5rem', display: 'inline-block' }}>
-              Return Home
-            </Link>
+            <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              {licenseFile && (
+                <button 
+                  className="btn btn-primary" 
+                  onClick={() => {
+                    const blob = new Blob([licenseFile], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'license.flxkskey';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                  }}
+                >
+                  Download License Key
+                </button>
+              )}
+              <Link to="/" className={licenseFile ? "btn btn-secondary" : "cta-button"}>
+                Return Home
+              </Link>
+            </div>
           </div>
         )}
       </div>

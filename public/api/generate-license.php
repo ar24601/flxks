@@ -177,5 +177,6 @@ try {
 echo json_encode([
     'success' => true,
     'email_sent' => $emailSuccess,
-    'email_error' => $emailError
+    'email_error' => $emailError,
+    'license_file' => $licenseContent
 ]);
