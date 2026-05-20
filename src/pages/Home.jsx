@@ -1,9 +1,18 @@
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Shield, Maximize, PlayCircle, EyeOff, Navigation, HardDrive } from 'lucide-react';
 import { openCheckout } from '../components/PaddleCheckout.jsx';
 import './Home.css';
 
 export default function Home() {
+  const [searchParams] = useSearchParams();
   const purchaseOnline = import.meta.env.VITE_FLXKS_PURCHASE_ONLINE !== 'False' && import.meta.env.VITE_FLXKS_PURCHASE_ONLINE !== 'false';
+
+  useEffect(() => {
+    if (purchaseOnline && searchParams.get('session_id')) {
+      openCheckout();
+    }
+  }, [searchParams, purchaseOnline]);
 
   return (
     <div className="home">
