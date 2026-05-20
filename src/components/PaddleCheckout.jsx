@@ -9,8 +9,20 @@ const itemsList = [{ priceId: PADDLE_PRICE_ID, quantity: 1 }];
 export function openCheckout() {
   if (typeof window === 'undefined') return;
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = urlParams.get('session_id');
+  
+  if (sessionId) {
+    console.log(`[Paddle] Initializing checkout for session: ${sessionId}`);
+  }
+
+  const checkoutSettings = { 
+    items: itemsList,
+    ...(sessionId && { customData: { session_id: sessionId } })
+  };
+
   if (window.Paddle && window.__paddleReady) {
-    window.Paddle.Checkout.open({ items: itemsList });
+    window.Paddle.Checkout.open(checkoutSettings);
     return;
   }
 
@@ -20,7 +32,7 @@ export function openCheckout() {
     attempts++;
     if (window.Paddle && window.__paddleReady) {
       clearInterval(interval);
-      window.Paddle.Checkout.open({ items: itemsList });
+      window.Paddle.Checkout.open(checkoutSettings);
     } else if (attempts >= 25) {
       clearInterval(interval);
       alert('Payment system is loading. Please try again in a moment.');
