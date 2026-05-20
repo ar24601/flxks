@@ -45,10 +45,11 @@ async function handleCheckoutCompleted(data) {
   if (!transactionId) return;
 
   try {
+    const sessionId = new URLSearchParams(window.location.search).get('session_id');
     const response = await fetch('/api/generate-license', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ transaction_id: transactionId }),
+      body: JSON.stringify({ transaction_id: transactionId, session_id: sessionId }),
     });
 
     const result = await response.json();

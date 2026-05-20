@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.post('/api/generate-license', async (req, res) => {
   try {
-    const { transaction_id } = req.body;
+    const { transaction_id, session_id } = req.body;
 
     if (!transaction_id) {
       return res.status(400).json({ error: 'Missing transaction_id' });
@@ -30,45 +30,88 @@ app.post('/api/generate-license', async (req, res) => {
     const paddleData = await response.json();
     const transaction = paddleData.data;
 
-    // Accounts for immediate state and slight delays in Sandbox
     if (!['completed', 'paid', 'ready'].includes(transaction.status)) {
       return res.status(400).json({ error: 'Transaction is not completed' });
     }
 
-    // Attempt to extract email
     const email = transaction.customer?.email || transaction.details?.customer?.email || 'customer@example.com';
+    const customer_id = transaction.customer_id || transaction.customer?.id || 'cust_123';
 
-    // 2. Prepare JSON Payload
-    const licenseData = {
-      email,
-      txn_id: transaction_id,
-      date: transaction.created_at || new Date().toISOString(),
-    };
+    // 2. Generate New KIRO String License Key
+    const ALPHANUMERIC_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const prefix = 'KIRO';
+    const randomData = crypto.randomBytes(16);
+    const hash = crypto.createHmac('sha256', `${email}-${Date.now()}-${randomData.toString('hex')}`)
+      .update(randomData.toString('hex')).digest('hex');
+    let uniqueId = '';
+    for (let i = 0; i < 12; i++) {
+        const index = parseInt(hash.substring(i * 2, i * 2 + 2), 16) % ALPHANUMERIC_CHARS.length;
+        uniqueId += ALPHANUMERIC_CHARS[index];
+    }
+    const date = new Date();
+    date.setUTCFullYear(date.getUTCFullYear() + 1);
+    const expirationEncoded = `${date.getUTCFullYear()}${String(date.getUTCMonth() + 1).padStart(2, '0')}${String(date.getUTCDate()).padStart(2, '0')}`;
+    const baseKey = `${prefix}-${uniqueId}-${expirationEncoded}`;
+    const signature = crypto.createHmac('sha256', process.env.LICENSE_KEY_SECRET || 'kiroClip_license_secret_2024_v1')
+      .update(baseKey).digest('hex').substring(0, 32).toUpperCase();
+    
+    const licenseKeyString = `${baseKey}-${signature}`;
 
-    // 3. Cryptographic Signing (ECDSA)
-    const rawEnvVar = process.env.ECDSA_PRIVATE_KEY_B64 || process.env.ECDSA_PRIVATE_KEY || '';
-    const privateKey = rawEnvVar.includes('-----BEGIN') 
-      ? rawEnvVar.replace(/\\n/g, '\n') 
-      : Buffer.from(rawEnvVar, 'base64').toString('utf-8').replace(/\\n/g, '\n').replace(/"/g, '').trim();
+    // 3. Connect directly to Supabase to instantly unlock the Xcode App
+    const supabaseUrl = process.env.VITE_SUPABASE_URL || 'http://localhost:8000';
+    const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_ANON_KEY || '';
+    
+    if (session_id && supabaseKey) {
+      console.log(`[Supabase] Fulfilling checkout session ${session_id}...`);
+      
+      // Update checkout_sessions table
+      await fetch(`${supabaseUrl}/rest/v1/checkout_sessions?id=eq.${session_id}`, {
+        method: 'PATCH',
+        headers: {
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          status: 'purchased',
+          license_key: licenseKeyString
+        })
+      });
 
-    const payloadString = JSON.stringify(licenseData);
-    const sign = crypto.createSign('SHA256');
-    sign.update(payloadString);
-    sign.end();
-    const signature = sign.sign(privateKey, 'hex');
+      // Insert into licenses table
+      await fetch(`${supabaseUrl}/rest/v1/licenses`, {
+        method: 'POST',
+        headers: {
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          license_key: licenseKeyString,
+          email: email,
+          session_id: session_id,
+          customer_id: customer_id,
+          paddle_customer_id: customer_id,
+          expiration_date: date.toISOString(),
+          signature: signature,
+          is_active: true
+        })
+      });
+      console.log(`[Supabase] Successfully injected license: ${licenseKeyString}`);
+    }
 
-    const licenseContent = JSON.stringify({ data: licenseData, signature }, null, 2);
-
-    // 4. Send Email via SMTP
+    // 4. Send Email via Nodemailer (Old System, preserved but sending string key)
     const smtpPass = process.env.SMTP_PASS_B64 
       ? Buffer.from(process.env.SMTP_PASS_B64, 'base64').toString('ascii').trim() 
       : (process.env.SMTP_PASS || '');
 
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 465,
-      secure: true,
-      auth: { user: process.env.SMTP_USER, pass: smtpPass },
+      host: process.env.SMTP_HOST || 'localhost',
+      port: Number(process.env.SMTP_PORT) || 1025,
+      secure: false, // Use false for local mailhog
+      auth: process.env.SMTP_USER ? { user: process.env.SMTP_USER, pass: smtpPass } : undefined,
     });
 
     let emailSuccess = true;
@@ -76,15 +119,10 @@ app.post('/api/generate-license', async (req, res) => {
 
     try {
       await transporter.sendMail({
-        from: `"Support" <${process.env.SMTP_USER}>`,
+        from: `"Support" <${process.env.SMTP_FROM || process.env.SMTP_USER || 'noreply@flxks.com'}>`,
         to: email,
-        subject: "Your License Key",
-        text: "Please find your license key attached.",
-        attachments: [{
-          filename: 'license.flxkskey',
-          content: licenseContent,
-          contentType: 'application/json'
-        }]
+        subject: "Your flxks License Key",
+        text: `Thank you for your purchase!\n\nYour license key is: ${licenseKeyString}\n\nIf you started the purchase from the app, it should unlock automatically!`,
       });
     } catch (emailErr) {
       console.error('Email failed to send:', emailErr);
@@ -96,7 +134,7 @@ app.post('/api/generate-license', async (req, res) => {
       success: true, 
       email_sent: emailSuccess, 
       email_error: emailError,
-      license_file: licenseContent
+      license_file: licenseKeyString // passing the string key back for UI
     });
     
   } catch (error) {
