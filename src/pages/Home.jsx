@@ -104,7 +104,7 @@ export default function Home() {
       </section>
 
       {/* Social Proof Section */}
-      <section className="social-proof" style={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
+      <section className="social-proof">
         <div className="container">
           <div className="section-header">
             <h2>Loved by Photographers and Creators</h2>
