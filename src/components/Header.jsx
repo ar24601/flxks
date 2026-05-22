@@ -43,7 +43,7 @@ export default function Header() {
           >
             Pricing
           </Link>
-          <button className="btn btn-primary btn-sm" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download Now</button>
+          <button className="btn btn-primary btn-sm" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Flxks</button>
         </nav>
       </div>
     </header>

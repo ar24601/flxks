@@ -173,7 +173,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="pricing-actions">
-              <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Now</button>
+              <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Free</button>
               <p className="commitment-note">Purchase not required. Subscription can be purchased in the App.<br/>No commitment • Cancel anytime</p>
             </div>
           </div>
