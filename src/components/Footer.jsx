@@ -29,7 +29,7 @@ export default function Footer() {
           <div className="footer-brand">
             <Link to="/" className="logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <Layers className="logo-icon" />
-              <span>flxks</span>
+              <span>Flxks</span>
             </Link>
             <p className="footer-desc">
               Your media stays on your device, under your control. Built for privacy, designed for you.

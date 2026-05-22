@@ -26,7 +26,7 @@ export default function Header() {
       <div className="container header-container">
         <Link to="/" className="logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <Layers className="logo-icon" />
-          <span>flxks</span>
+          <span>Flxks</span>
         </Link>
         <nav className="nav-links">
           <Link 

@@ -28,7 +28,6 @@ export default function Home() {
             </p>
             <div className="hero-actions animate-fade-in delay-300">
               <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download Now</button>
-              <button className="btn btn-secondary">Learn More</button>
             </div>
             <p className="animate-fade-in delay-300" style={{ marginTop: '1rem', fontSize: '0.95rem', opacity: 0.8 }}>
               Free download includes limited functionality. Unlock all features directly in the app.
