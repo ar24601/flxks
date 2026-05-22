@@ -19,17 +19,15 @@ export default function Home() {
       <section className="hero">
         <div className="container">
           <div className="hero-content">
-            <div className="badge animate-fade-in">v1.0 is here</div>
             <h1 className="animate-fade-in delay-100">
-              Built for <span className="text-gradient">Privacy</span>, <br />
-              Designed for You
+              Experience Media Like <br /><span className="text-gradient">Never Before</span>
             </h1>
             <p className="hero-subtitle animate-fade-in delay-200">
               A premium desktop multimedia viewer that puts you in complete control. 
               No cloud uploads, no tracking. Just your photos and videos, beautifully displayed.
             </p>
             <div className="hero-actions animate-fade-in delay-300">
-              <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download flxks</button>
+              <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download Now</button>
               <button className="btn btn-secondary">Learn More</button>
             </div>
             <p className="animate-fade-in delay-300" style={{ marginTop: '1rem', fontSize: '0.95rem', opacity: 0.8 }}>
@@ -64,7 +62,7 @@ export default function Home() {
       <section id="features" className="features">
         <div className="container">
           <div className="section-header">
-            <h2>Experience Media Like Never Before</h2>
+            <h2>Built for Privacy, Designed for You</h2>
             <p>Powerful features wrapped in an elegant interface.</p>
           </div>
           
@@ -72,17 +70,17 @@ export default function Home() {
             <div className="feature-card glass-panel">
               <div className="feature-icon"><Shield /></div>
               <h3>Total Privacy</h3>
-              <p>flxks never uploads your media to the cloud, never tracks viewing habits, and never shares data with third parties.</p>
+              <p>No uploads, no cloud storage, no sharing with third-parties.</p>
             </div>
             <div className="feature-card glass-panel">
               <div className="feature-icon"><HardDrive /></div>
               <h3>Stays on Device</h3>
-              <p>Everything stays on your local device, under your control. We respect your precious memories.</p>
+              <p>Everything stays on your local device, under your control. We respect your privacy.</p>
             </div>
             <div className="feature-card glass-panel">
               <div className="feature-icon"><Maximize /></div>
-              <h3>Extensive Size Handling</h3>
-              <p>Perfectly optimized for media of all sizes. View high-resolution panoramas and massive video files flawlessly.</p>
+              <h3>Optimized Viewing</h3>
+              <p>Layout design, multi-media, flawless, optimized, custom viewing.</p>
             </div>
             <div className="feature-card glass-panel">
               <div className="feature-icon"><PlayCircle /></div>
@@ -116,7 +114,7 @@ export default function Home() {
               <div style={{ marginBottom: '1rem', color: '#ffb400', fontSize: '1.2rem', letterSpacing: '2px' }}>
                  ★★★★★
               </div>
-              <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>"Finally, a media viewer that doesn't try to upload all my personal photos to the cloud. The privacy aspect is exactly what I was looking for, and the interface is gorgeous."</p>
+              <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>"Love having control over my images and videos. Exactly what I was looking for and the minimalist interface is exceptional"</p>
               <p style={{ fontWeight: '600', fontSize: '0.95rem', opacity: 0.9 }}>— Sarah T.</p>
             </div>
             
@@ -124,7 +122,7 @@ export default function Home() {
               <div style={{ marginBottom: '1rem', color: '#ffb400', fontSize: '1.2rem', letterSpacing: '2px' }}>
                  ★★★★★
               </div>
-              <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>"The performance on massive video files is incredible. It handles my 4K drone footage without skipping a beat, all while looking like a premium native macOS app."</p>
+              <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>"The performance on massive video files is incredible. It handles my 4K footage without skipping a beat, all while looking like a premium native macOS app."</p>
               <p style={{ fontWeight: '600', fontSize: '0.95rem', opacity: 0.9 }}>— Marcus R.</p>
             </div>
             
@@ -139,8 +137,8 @@ export default function Home() {
 
           <div className="glass-panel text-center cta-panel">
             <h2>Ready to take control of your media?</h2>
-            <p className="cta-subtitle">Join thousands of users who trust flxks with their precious memories.</p>
-            <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download flxks</button>
+            <p className="cta-subtitle">Discover why thousands of users Love Flxks</p>
+            <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download Now</button>
             <p style={{ marginTop: '1rem', fontSize: '0.95rem', opacity: 0.8 }}>
               Free version has limited features. Upgrade within the app anytime.
             </p>
@@ -158,6 +156,7 @@ export default function Home() {
           <div className="pricing-card glass-panel">
             <div className="pricing-header">
               <h3>Monthly Subscription</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Free version available</p>
               <div className="price">
                 <span className="currency">$</span>
                 <span className="amount">6.99</span>
@@ -170,12 +169,12 @@ export default function Home() {
                 <li><Shield className="check-icon"/> Unlimited media viewing</li>
                 <li><Shield className="check-icon"/> All display and navigation features</li>
                 <li><Shield className="check-icon"/> Future updates included</li>
-                <li><Shield className="check-icon"/> 100% Privacy guaranteed</li>
+                <li><Shield className="check-icon"/> 100% Privacy</li>
               </ul>
             </div>
             <div className="pricing-actions">
-              <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download App to Subscribe</button>
-              <p className="commitment-note">Subscriptions are purchased securely within the macOS app.<br/>No commitment • Cancel anytime</p>
+              <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Now</button>
+              <p className="commitment-note">Purchase not required. Subscription can be purchased in the App.<br/>No commitment • Cancel anytime</p>
             </div>
           </div>
         </div>
