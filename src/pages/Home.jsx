@@ -6,13 +6,12 @@ import './Home.css';
 
 export default function Home() {
   const [searchParams] = useSearchParams();
-  const purchaseOnline = import.meta.env.VITE_FLXKS_PURCHASE_ONLINE !== 'False' && import.meta.env.VITE_FLXKS_PURCHASE_ONLINE !== 'false';
 
   useEffect(() => {
-    if (purchaseOnline && searchParams.get('session_id')) {
+    if (searchParams.get('session_id')) {
       openCheckout();
     }
-  }, [searchParams, purchaseOnline]);
+  }, [searchParams]);
 
   return (
     <div className="home">
@@ -30,18 +29,12 @@ export default function Home() {
               No cloud uploads, no tracking. Just your photos and videos, beautifully displayed.
             </p>
             <div className="hero-actions animate-fade-in delay-300">
-              {purchaseOnline ? (
-                <button className="btn btn-primary" onClick={openCheckout}>Start Free Trial</button>
-              ) : (
-                <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download flxks</button>
-              )}
+              <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download flxks</button>
               <button className="btn btn-secondary">Learn More</button>
             </div>
-            {!purchaseOnline && (
-              <p className="animate-fade-in delay-300" style={{ marginTop: '1rem', fontSize: '0.95rem', opacity: 0.8 }}>
-                Free download includes limited functionality. Unlock all features directly in the app.
-              </p>
-            )}
+            <p className="animate-fade-in delay-300" style={{ marginTop: '1rem', fontSize: '0.95rem', opacity: 0.8 }}>
+              Free download includes limited functionality. Unlock all features directly in the app.
+            </p>
           </div>
           
           <div className="hero-visual animate-fade-in delay-300">
@@ -116,55 +109,46 @@ export default function Home() {
           <div className="glass-panel text-center cta-panel">
             <h2>Ready to take control of your media?</h2>
             <p className="cta-subtitle">Join thousands of users who trust flxks with their precious memories.</p>
-            {purchaseOnline ? (
-              <button className="btn btn-primary" onClick={openCheckout}>Start Free Trial</button>
-            ) : (
-              <>
-                <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download flxks</button>
-                <p style={{ marginTop: '1rem', fontSize: '0.95rem', opacity: 0.8 }}>
-                  Free version has limited features. Upgrade within the app anytime.
-                </p>
-              </>
-            )}
+            <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download flxks</button>
+            <p style={{ marginTop: '1rem', fontSize: '0.95rem', opacity: 0.8 }}>
+              Free version has limited features. Upgrade within the app anytime.
+            </p>
           </div>
         </div>
       </section>
-
       {/* Pricing Section */}
-      {purchaseOnline && (
-        <section id="pricing" className="pricing">
-          <div className="container">
-            <div className="section-header">
-              <h2>Simple, Transparent Pricing</h2>
-              <p>Premium features without the premium price tag.</p>
+      <section id="pricing" className="pricing">
+        <div className="container">
+          <div className="section-header">
+            <h2>Simple, Transparent Pricing</h2>
+            <p>Premium features without the premium price tag.</p>
+          </div>
+          
+          <div className="pricing-card glass-panel">
+            <div className="pricing-header">
+              <h3>Monthly Subscription</h3>
+              <div className="price">
+                <span className="currency">$</span>
+                <span className="amount">6.99</span>
+                <span className="period">/mo</span>
+              </div>
+              <p className="currency-note">USD</p>
             </div>
-            
-            <div className="pricing-card glass-panel">
-              <div className="pricing-header">
-                <h3>Monthly Subscription</h3>
-                <div className="price">
-                  <span className="currency">$</span>
-                  <span className="amount">6.99</span>
-                  <span className="period">/mo</span>
-                </div>
-                <p className="currency-note">USD</p>
-              </div>
-              <div className="pricing-features">
-                <ul>
-                  <li><Shield className="check-icon"/> Unlimited media viewing</li>
-                  <li><Shield className="check-icon"/> All display and navigation features</li>
-                  <li><Shield className="check-icon"/> Future updates included</li>
-                  <li><Shield className="check-icon"/> 100% Privacy guaranteed</li>
-                </ul>
-              </div>
-              <div className="pricing-actions">
-                <button className="btn btn-primary w-full" onClick={openCheckout}>Subscribe Now</button>
-                <p className="commitment-note">No commitment • Cancel anytime<br/>Finish out the month without renewal.</p>
-              </div>
+            <div className="pricing-features">
+              <ul>
+                <li><Shield className="check-icon"/> Unlimited media viewing</li>
+                <li><Shield className="check-icon"/> All display and navigation features</li>
+                <li><Shield className="check-icon"/> Future updates included</li>
+                <li><Shield className="check-icon"/> 100% Privacy guaranteed</li>
+              </ul>
+            </div>
+            <div className="pricing-actions">
+              <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download App to Subscribe</button>
+              <p className="commitment-note">Subscriptions are purchased securely within the macOS app.<br/>No commitment • Cancel anytime</p>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
     </div>
   );
 }
