@@ -104,8 +104,39 @@ export default function Home() {
       </section>
 
       {/* Social Proof Section */}
-      <section className="social-proof">
+      <section className="social-proof" style={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
         <div className="container">
+          <div className="section-header">
+            <h2>Loved by Photographers and Creators</h2>
+            <p>See what people are saying about flxks.</p>
+          </div>
+          
+          <div className="grid grid-cols-3" style={{ marginBottom: '4rem' }}>
+            <div className="feature-card glass-panel" style={{ padding: '2rem', textAlign: 'left' }}>
+              <div style={{ marginBottom: '1rem', color: '#ffb400', fontSize: '1.2rem', letterSpacing: '2px' }}>
+                 ★★★★★
+              </div>
+              <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>"Finally, a media viewer that doesn't try to upload all my personal photos to the cloud. The privacy aspect is exactly what I was looking for, and the interface is gorgeous."</p>
+              <p style={{ fontWeight: '600', fontSize: '0.95rem', opacity: 0.9 }}>— Sarah T.</p>
+            </div>
+            
+            <div className="feature-card glass-panel" style={{ padding: '2rem', textAlign: 'left' }}>
+              <div style={{ marginBottom: '1rem', color: '#ffb400', fontSize: '1.2rem', letterSpacing: '2px' }}>
+                 ★★★★★
+              </div>
+              <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>"The performance on massive video files is incredible. It handles my 4K drone footage without skipping a beat, all while looking like a premium native macOS app."</p>
+              <p style={{ fontWeight: '600', fontSize: '0.95rem', opacity: 0.9 }}>— Marcus R.</p>
+            </div>
+            
+            <div className="feature-card glass-panel" style={{ padding: '2rem', textAlign: 'left' }}>
+              <div style={{ marginBottom: '1rem', color: '#ffb400', fontSize: '1.2rem', letterSpacing: '2px' }}>
+                 ★★★★★
+              </div>
+              <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>"I love how minimalist it is. It gets completely out of the way and lets me focus entirely on my content. Easily the best media player I've ever used."</p>
+              <p style={{ fontWeight: '600', fontSize: '0.95rem', opacity: 0.9 }}>— Elena K.</p>
+            </div>
+          </div>
+
           <div className="glass-panel text-center cta-panel">
             <h2>Ready to take control of your media?</h2>
             <p className="cta-subtitle">Join thousands of users who trust flxks with their precious memories.</p>
