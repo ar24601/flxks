@@ -49,31 +49,10 @@ async function handleCheckoutCompleted(data) {
   if (!transactionId) return;
 
   try {
-    const sessionId = new URLSearchParams(window.location.search).get('session_id');
-    const response = await fetch('/api/generate-license', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ transaction_id: transactionId, session_id: sessionId }),
-    });
-
-    const result = await response.json();
-    
-    if (!response.ok || !result.success) {
-      alert('Payment succeeded, but there was a server error processing your license.');
-    }
-
-    if (result.license_file) {
-      sessionStorage.setItem(`license_${transactionId}`, result.license_file);
-    }
-
-    // Redirect on success, optionally passing email error for debugging
     let redirectUrl = `/success?txn=${transactionId}`;
-    if (result.email_sent === false && result.email_error) {
-      redirectUrl += `&email_err=${encodeURIComponent(result.email_error)}`;
-    }
     window.location.href = redirectUrl;
   } catch (err) {
-    console.error('Network error during license generation:', err);
+    console.error('Network error during checkout completion:', err);
   }
 }
 
