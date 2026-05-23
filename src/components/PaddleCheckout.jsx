@@ -2,22 +2,26 @@
 import { useEffect, useCallback } from 'react';
 
 const PADDLE_CLIENT_TOKEN = import.meta.env.VITE_PADDLE_CLIENT_TOKEN;
-const PADDLE_PRICE_ID = import.meta.env.VITE_PADDLE_PRICE_ID;
+const PADDLE_MONTHLY_PRICE_ID = import.meta.env.VITE_PADDLE_MONTHLY_PRICE_ID;
+const PADDLE_YEARLY_PRICE_ID = import.meta.env.VITE_PADDLE_YEARLY_PRICE_ID;
 
-const itemsList = [{ priceId: PADDLE_PRICE_ID, quantity: 1 }];
-
-export function openCheckout() {
+export function openCheckout(plan = 'monthly') {
   if (typeof window === 'undefined') return;
 
   const urlParams = new URLSearchParams(window.location.search);
   const sessionId = urlParams.get('session_id');
+  const urlPlan = urlParams.get('plan');
   
   if (sessionId) {
     console.log(`[Paddle] Initializing checkout for session: ${sessionId}`);
   }
 
+  // Use URL plan parameter if provided, otherwise fallback to the argument
+  const selectedPlan = urlPlan || plan;
+  const priceId = selectedPlan === 'yearly' ? PADDLE_YEARLY_PRICE_ID : PADDLE_MONTHLY_PRICE_ID;
+
   const checkoutSettings = { 
-    items: itemsList,
+    items: [{ priceId, quantity: 1 }],
     ...(sessionId && { customData: { session_id: sessionId } })
   };
 

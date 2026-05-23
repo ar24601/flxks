@@ -152,28 +152,60 @@ export default function Home() {
             <p>Premium features without the premium price tag.</p>
           </div>
           
-          <div className="pricing-card glass-panel">
-            <div className="pricing-header">
-              <h3>Monthly Subscription</h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Free version available</p>
-              <div className="price">
-                <span className="currency">$</span>
-                <span className="amount">6.99</span>
-                <span className="period">/mo</span>
+          <div className="grid grid-cols-2" style={{ maxWidth: '900px', margin: '0 auto', gap: '2rem' }}>
+            {/* Monthly Plan */}
+            <div className="pricing-card glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <div className="pricing-header">
+                <h3>Monthly Subscription</h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Free version available</p>
+                <div className="price">
+                  <span className="currency">$</span>
+                  <span className="amount">6.99</span>
+                  <span className="period">/mo</span>
+                </div>
+                <p className="currency-note">USD</p>
               </div>
-              <p className="currency-note">USD</p>
+              <div className="pricing-features" style={{ flexGrow: 1 }}>
+                <ul>
+                  <li><Shield className="check-icon"/> Unlimited media viewing</li>
+                  <li><Shield className="check-icon"/> All display and navigation features</li>
+                  <li><Shield className="check-icon"/> Future updates included</li>
+                  <li><Shield className="check-icon"/> 100% Privacy</li>
+                </ul>
+              </div>
+              <div className="pricing-actions">
+                <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Free</button>
+                <p className="commitment-note">Purchase not required. Subscription can be purchased in the App.<br/>No commitment • Cancel anytime</p>
+              </div>
             </div>
-            <div className="pricing-features">
-              <ul>
-                <li><Shield className="check-icon"/> Unlimited media viewing</li>
-                <li><Shield className="check-icon"/> All display and navigation features</li>
-                <li><Shield className="check-icon"/> Future updates included</li>
-                <li><Shield className="check-icon"/> 100% Privacy</li>
-              </ul>
-            </div>
-            <div className="pricing-actions">
-              <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Free</button>
-              <p className="commitment-note">Purchase not required. Subscription can be purchased in the App.<br/>No commitment • Cancel anytime</p>
+
+            {/* Yearly Plan */}
+            <div className="pricing-card glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column', position: 'relative', border: '1px solid var(--accent-color)' }}>
+              <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: 'var(--accent-color)', color: '#000', padding: '4px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold' }}>
+                Save 28%
+              </div>
+              <div className="pricing-header">
+                <h3>Yearly Subscription</h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Best Value</p>
+                <div className="price">
+                  <span className="currency">$</span>
+                  <span className="amount">59.98</span>
+                  <span className="period">/yr</span>
+                </div>
+                <p className="currency-note">USD</p>
+              </div>
+              <div className="pricing-features" style={{ flexGrow: 1 }}>
+                <ul>
+                  <li><Shield className="check-icon"/> Unlimited media viewing</li>
+                  <li><Shield className="check-icon"/> All display and navigation features</li>
+                  <li><Shield className="check-icon"/> Future updates included</li>
+                  <li><Shield className="check-icon"/> 100% Privacy</li>
+                </ul>
+              </div>
+              <div className="pricing-actions">
+                <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Free</button>
+                <p className="commitment-note">Purchase not required. Subscription can be purchased in the App.<br/>One-time annual charge</p>
+              </div>
             </div>
           </div>
         </div>
