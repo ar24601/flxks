@@ -62,65 +62,24 @@ export default function Success() {
             <p style={{ marginTop: '1rem', color: '#888' }}>Transaction ID: {transactionId || 'N/A'}</p>
           </div>
         )}
-        
         {data && !error && (
           <div style={{ background: 'rgba(50, 255, 100, 0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(50, 255, 100, 0.2)', textAlign: 'center', maxWidth: '600px', width: '100%' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', textAlign: 'left' }}>
-              <div>
-                <span style={{ color: '#888', fontSize: '0.9rem' }}>Status</span>
-                <div style={{ color: '#4ade80', fontSize: '1.2rem', textTransform: 'capitalize', fontWeight: 'bold' }}>{data.status}</div>
-              </div>
-              
-              <div>
-                <span style={{ color: '#888', fontSize: '0.9rem' }}>Transaction ID</span>
-                <div style={{ color: '#e2e8f0', fontFamily: 'monospace', fontSize: '1.1rem' }}>{transactionId}</div>
-              </div>
-
-              <div>
-                <span style={{ color: '#888', fontSize: '0.9rem' }}>Email Address</span>
-                <div style={{ color: '#e2e8f0', fontSize: '1.1rem' }}>{data.email || 'Not provided'}</div>
-              </div>
-            </div>
-
-            <p style={{ marginTop: '2rem', color: '#a0aec0' }}>
-              Your license key and download instructions have been generated.
+            
+            <h2 style={{ color: '#4ade80', marginBottom: '1rem' }}>You're all set!</h2>
+            
+            <p style={{ fontSize: '1.1rem', color: '#e2e8f0', lineHeight: '1.6', marginBottom: '2rem' }}>
+              Your payment was successful and your subscription is now active.
             </p>
             
-            {emailErr && (
-              <div style={{ marginTop: '1.5rem', background: 'rgba(255, 170, 0, 0.1)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(255, 170, 0, 0.3)', textAlign: 'left' }}>
-                <p style={{ color: '#fbbf24', margin: '0 0 0.5rem 0', fontWeight: 'bold' }}>⚠️ Email Delivery Failed</p>
-                <p style={{ color: '#d1d5db', fontSize: '0.9rem', margin: 0, fontFamily: 'monospace', wordBreak: 'break-word' }}>
-                  {emailErr}
-                </p>
-                {licenseFile && (
-                  <p style={{ color: '#fbbf24', fontSize: '0.9rem', marginTop: '0.75rem', marginBottom: 0 }}>
-                    Don't worry! You can still download your license key directly using the button below.
-                  </p>
-                )}
-              </div>
-            )}
+            <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '1.5rem', borderRadius: '8px', marginBottom: '2rem' }}>
+              <p style={{ margin: 0, color: '#a0aec0', fontSize: '1.05rem' }}>
+                You can safely close this window and return to the <strong>KiroClip app</strong> on your Mac. It will automatically detect your new license!
+              </p>
+            </div>
             
-            <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              {licenseFile && (
-                <button 
-                  className="btn btn-primary" 
-                  onClick={() => {
-                    const blob = new Blob([licenseFile], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'license.flxkskey';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                  }}
-                >
-                  Download License Key
-                </button>
-              )}
-              <Link to="/" className={licenseFile ? "btn btn-secondary" : "cta-button"}>
-                Return Home
+            <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+              <Link to="/" className="cta-button">
+                Go to Homepage
               </Link>
             </div>
           </div>
