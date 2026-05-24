@@ -175,38 +175,43 @@ export default function Home() {
               </div>
               <div className="pricing-actions">
                 <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Free</button>
-                <p className="commitment-note">Purchase not required. Subscription can be purchased in the App.<br/>No commitment • Cancel anytime</p>
               </div>
             </div>
 
             {/* Yearly Plan */}
-            <div className="pricing-card glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column', position: 'relative', border: '1px solid var(--accent-color)' }}>
-              <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: 'var(--accent-color)', color: '#000', padding: '4px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold' }}>
+            <div style={{ position: 'relative', height: '100%' }}>
+              <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: 'var(--accent-color)', color: '#000', padding: '4px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold', zIndex: 10 }}>
                 Save 28%
               </div>
-              <div className="pricing-header">
-                <h3>Yearly Subscription</h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Best Value</p>
-                <div className="price">
-                  <span className="currency">$</span>
-                  <span className="amount">59.98</span>
-                  <span className="period">/yr</span>
+              <div className="pricing-card glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column', border: '1px solid var(--accent-color)' }}>
+                <div className="pricing-header">
+                  <h3>Yearly Subscription</h3>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Best Value</p>
+                  <div className="price">
+                    <span className="currency">$</span>
+                    <span className="amount">59.98</span>
+                    <span className="period">/yr</span>
+                  </div>
+                  <p className="currency-note">USD</p>
                 </div>
-                <p className="currency-note">USD</p>
-              </div>
-              <div className="pricing-features" style={{ flexGrow: 1 }}>
-                <ul>
-                  <li><Shield className="check-icon"/> Unlimited media viewing</li>
-                  <li><Shield className="check-icon"/> All display and navigation features</li>
-                  <li><Shield className="check-icon"/> Future updates included</li>
-                  <li><Shield className="check-icon"/> 100% Privacy</li>
-                </ul>
-              </div>
-              <div className="pricing-actions">
-                <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Free</button>
-                <p className="commitment-note">Purchase not required. Subscription can be purchased in the App.<br/>One-time annual charge</p>
+                <div className="pricing-features" style={{ flexGrow: 1 }}>
+                  <ul>
+                    <li><Shield className="check-icon"/> Unlimited media viewing</li>
+                    <li><Shield className="check-icon"/> All display and navigation features</li>
+                    <li><Shield className="check-icon"/> Future updates included</li>
+                    <li><Shield className="check-icon"/> 100% Privacy</li>
+                  </ul>
+                </div>
+                <div className="pricing-actions">
+                  <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Free</button>
+                </div>
               </div>
             </div>
+          </div>
+          
+          <div className="commitment-note" style={{ marginTop: '2.5rem', opacity: 0.8 }}>
+            Purchase not required. Subscription can be purchased in the App.<br/>
+            No commitment • Cancel anytime
           </div>
         </div>
       </section>
