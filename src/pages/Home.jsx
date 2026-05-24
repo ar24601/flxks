@@ -150,45 +150,21 @@ export default function Home() {
           <div className="section-header">
             <h2>Simple, Transparent Pricing</h2>
             <p>Premium features without the premium price tag.</p>
-            <p style={{ marginTop: '1rem', fontWeight: '500', color: 'var(--accent-color)' }}>Available In-App Purchase Options:</p>
           </div>
           
-          <div className="grid grid-cols-2" style={{ maxWidth: '900px', margin: '0 auto', gap: '2rem' }}>
-            {/* Monthly Plan */}
-            <div className="pricing-card glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-              <div className="pricing-header">
-                <h3>Monthly Subscription</h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Free version available</p>
-                <div className="price">
-                  <span className="currency">$</span>
-                  <span className="amount">6.99</span>
-                  <span className="period">/mo</span>
-                </div>
-                <p className="currency-note">USD</p>
-              </div>
-              <div className="pricing-features" style={{ flexGrow: 1 }}>
-                <ul>
-                  <li><Shield className="check-icon"/> Unlimited media viewing</li>
-                  <li><Shield className="check-icon"/> All display and navigation features</li>
-                  <li><Shield className="check-icon"/> Future updates included</li>
-                  <li><Shield className="check-icon"/> 100% Privacy</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Yearly Plan */}
-            <div style={{ position: 'relative', height: '100%' }}>
-              <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: 'var(--accent-color)', color: '#000', padding: '4px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold', zIndex: 10 }}>
-                Save 28%
-              </div>
-              <div className="pricing-card glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column', border: '1px solid var(--accent-color)' }}>
+          <div className="pricing-container glass-panel" style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 2rem 3rem 2rem', border: '1px solid var(--accent-color)' }}>
+            <p style={{ textAlign: 'center', marginBottom: '2rem', fontWeight: '500', color: 'var(--accent-color)', fontSize: '1.1rem' }}>Available In-App Purchase Options:</p>
+            
+            <div className="grid grid-cols-2" style={{ gap: '2rem' }}>
+              {/* Monthly Plan */}
+              <div className="pricing-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'rgba(255,255,255,0.03)', borderRadius: 'var(--border-radius-md)', padding: '2rem' }}>
                 <div className="pricing-header">
-                  <h3>Yearly Subscription</h3>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Best Value</p>
+                  <h3>Monthly Subscription</h3>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Free version available</p>
                   <div className="price">
                     <span className="currency">$</span>
-                    <span className="amount">59.98</span>
-                    <span className="period">/yr</span>
+                    <span className="amount">6.99</span>
+                    <span className="period">/mo</span>
                   </div>
                   <p className="currency-note">USD</p>
                 </div>
@@ -201,16 +177,38 @@ export default function Home() {
                   </ul>
                 </div>
               </div>
+
+              {/* Yearly Plan */}
+              <div className="pricing-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'rgba(255,255,255,0.03)', borderRadius: 'var(--border-radius-md)', padding: '2rem' }}>
+                <div className="pricing-header">
+                  <h3>Yearly Subscription</h3>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Best Value</p>
+                  <div className="price">
+                    <span className="currency">$</span>
+                    <span className="amount">59.98</span>
+                    <span className="period">/yr</span>
+                  </div>
+                  <p className="currency-note">USD</p>
+                </div>
+                <div className="pricing-features" style={{ flexGrow: 1 }}>
+                  <ul>
+                    <li><Shield className="check-icon"/> <span style={{color: 'var(--accent-color)', fontWeight: 'bold'}}>Save 28%</span></li>
+                    <li><Shield className="check-icon"/> Everything included in the Monthly Subscription</li>
+                    <li><Shield className="check-icon"/> Future updates included</li>
+                    <li><Shield className="check-icon"/> 100% Privacy</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div className="pricing-actions" style={{ marginTop: '2.5rem', textAlign: 'center' }}>
-            <button className="btn btn-primary" style={{ padding: '0.75rem 2.5rem', fontSize: '1.1rem' }} onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>
-              Download to Try Free
-            </button>
-            <div className="commitment-note" style={{ marginTop: '1rem', opacity: 0.8 }}>
-              Purchase not required. Subscription can be purchased in the App.<br/>
-              No commitment • Cancel anytime
+            
+            <div className="pricing-actions" style={{ marginTop: '3rem', textAlign: 'center' }}>
+              <button className="btn btn-primary" style={{ padding: '0.75rem 2.5rem', fontSize: '1.1rem' }} onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>
+                Download to Try Free
+              </button>
+              <div className="commitment-note" style={{ marginTop: '1rem', opacity: 0.8 }}>
+                Purchase not required. Subscription can be purchased in the App.<br/>
+                No commitment • Cancel anytime
+              </div>
             </div>
           </div>
         </div>
