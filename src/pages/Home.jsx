@@ -20,11 +20,11 @@ export default function Home() {
         <div className="container">
           <div className="hero-content">
             <h1 className="animate-fade-in delay-100">
-              Experience Media Like <br /><span className="text-gradient">Never Before</span>
+              Get Lost in <br /><span className="text-gradient">Your Media</span>
             </h1>
             <p className="hero-subtitle animate-fade-in delay-200">
-              A premium desktop multimedia viewer that puts you in complete control.
-              Multiple sizes, multiple formats, mixed-media display and more.
+              Turn your folders of photos and videos into an engaging, dynamic visual experience. 
+              Seamlessly mix formats, span multiple displays, and rediscover your memories in a completely novel way.
             </p>
             <div className="hero-actions animate-fade-in delay-300">
               <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download Now</button>
@@ -61,11 +61,31 @@ export default function Home() {
       <section id="features" className="features">
         <div className="container">
           <div className="section-header">
-            <h2>Built for Privacy, Designed for You</h2>
-            <p>Powerful features wrapped in an elegant interface.</p>
+            <h2>Designed to Captivate</h2>
+            <p>Novel features that make viewing your media incredibly fun and engaging.</p>
           </div>
 
           <div className="grid grid-cols-3">
+            <div className="feature-card glass-panel">
+              <div className="feature-icon"><PlayCircle /></div>
+              <h3>Smart Auto-Play</h3>
+              <p>Watch your media come alive. Our intelligent auto-play seamlessly blends photos and videos into a mesmerizing, endless flow.</p>
+            </div>
+            <div className="feature-card glass-panel">
+              <div className="feature-icon"><Navigation /></div>
+              <h3>Intuitive Navigation</h3>
+              <p>Glide through thousands of memories effortlessly. Fluid mouse gestures and snappy shortcuts make exploring your media a joy.</p>
+            </div>
+            <div className="feature-card glass-panel">
+              <div className="feature-icon"><Maximize /></div>
+              <h3>Optimized Viewing</h3>
+              <p>A breathtaking layout. Flxks flawlessly optimizes every pixel across single or multiple displays for a truly immersive experience.</p>
+            </div>
+            <div className="feature-card glass-panel">
+              <div className="feature-icon"><EyeOff /></div>
+              <h3>Distraction-Free</h3>
+              <p>Immerse yourself completely. Our beautiful, minimalist interface fades into the background so your content takes center stage.</p>
+            </div>
             <div className="feature-card glass-panel">
               <div className="feature-icon"><Shield /></div>
               <h3>Total Privacy</h3>
@@ -75,26 +95,6 @@ export default function Home() {
               <div className="feature-icon"><HardDrive /></div>
               <h3>Stays on Device</h3>
               <p>Everything stays on your local device, under your control. We respect your privacy.</p>
-            </div>
-            <div className="feature-card glass-panel">
-              <div className="feature-icon"><Maximize /></div>
-              <h3>Optimized Viewing</h3>
-              <p>Layout design, multi-media, flawless, optimized, custom viewing.</p>
-            </div>
-            <div className="feature-card glass-panel">
-              <div className="feature-icon"><PlayCircle /></div>
-              <h3>Smart Auto-Play</h3>
-              <p>Seamlessly transition between videos and photos with intelligent auto-play functionality.</p>
-            </div>
-            <div className="feature-card glass-panel">
-              <div className="feature-icon"><Navigation /></div>
-              <h3>Intuitive Navigation</h3>
-              <p>Navigate through thousands of files instantly with keyboard shortcuts and fluid mouse gestures.</p>
-            </div>
-            <div className="feature-card glass-panel">
-              <div className="feature-icon"><EyeOff /></div>
-              <h3>Distraction-Free</h3>
-              <p>A beautifully minimalist interface that fades away so your content can take center stage.</p>
             </div>
           </div>
         </div>
@@ -135,8 +135,8 @@ export default function Home() {
           </div>
 
           <div className="glass-panel text-center cta-panel">
-            <h2>Ready to take control of your media?</h2>
-            <p className="cta-subtitle">Discover why thousands of users Love Flxks</p>
+            <h2>Ready to experience your media in a whole new way?</h2>
+            <p className="cta-subtitle">Join thousands of users who have rediscovered the joy of their personal photo and video collections.</p>
             <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download Now</button>
             <p style={{ marginTop: '1rem', fontSize: '0.95rem', opacity: 0.8 }}>
               Free version has limited features. Upgrade within the app anytime.

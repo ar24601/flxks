@@ -137,33 +137,29 @@ try {
     $mail->setFrom($smtpUser, 'flxks Support');
     $mail->addAddress($email);
 
-    // Attachments
-    $mail->addStringAttachment($licenseContent, 'license.flxkskey', 'base64', 'application/json');
-
     // Content
     $mail->isHTML(true);
-    $mail->Subject = 'Your flxks License Key & Download Instructions';
+    $mail->Subject = 'Your flxks License & Download Instructions';
     
     $mail->Body = '
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
         <h2 style="color: #6366f1;">Welcome to flxks!</h2>
         <p>Thank you for purchasing flxks. We are thrilled to have you on board.</p>
-        <p>Attached to this email is your personal license key: <strong>license.flxkskey</strong>.</p>
+        <p>Your license was activated automatically during checkout.</p>
         
         <h3>How to get started:</h3>
         <ol style="line-height: 1.6;">
             <li>Download the flxks application from our website.</li>
             <li>Install and launch the app on your device.</li>
-            <li>When prompted, drag and drop the attached <code>license.flxkskey</code> file into the app, or select it through the activation menu.</li>
+            <li>The application will automatically detect your purchase and unlock!</li>
         </ol>
         
         <p>If you have any questions or run into issues, simply reply to this email.</p>
         
-        <p>Enjoy your complete control over your media!</p>
         <p>— The flxks Team</p>
     </div>';
 
-    $mail->AltBody = "Welcome to flxks!\n\nThank you for purchasing flxks. Attached to this email is your personal license key: license.flxkskey.\n\nHow to get started:\n1. Download the flxks application from our website.\n2. Install and launch the app.\n3. Import the attached license.flxkskey file to activate.\n\nEnjoy!\n— The flxks Team";
+    $mail->AltBody = "Welcome to flxks!\n\nThank you for purchasing flxks. Your license was activated automatically during checkout.\n\nHow to get started:\n1. Download the flxks application from our website.\n2. Install and launch the app.\n3. The application will automatically detect your purchase and unlock!\n\n— The flxks Team";
 
     $mail->send();
     $emailSuccess = true;
