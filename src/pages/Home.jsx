@@ -147,7 +147,7 @@ export default function Home() {
       {/* Pricing Section */}
       <section id="pricing" className="pricing">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header" style={{ marginBottom: '1.5rem' }}>
             <h2>Simple, Transparent Pricing</h2>
             <p>Premium features without the premium price tag.</p>
           </div>
