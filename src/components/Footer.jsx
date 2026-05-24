@@ -51,6 +51,9 @@ export default function Footer() {
               >
                 Pricing
               </Link>
+              <Link to="/help" onClick={() => handlePageClick('/help')}>
+                Help & Documentation
+              </Link>
             </div>
             <div className="footer-column">
               <h3>Legal</h3>

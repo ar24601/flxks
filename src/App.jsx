@@ -7,6 +7,7 @@ import ReturnPolicy from './pages/ReturnPolicy.jsx';
 import Success from './pages/Success.jsx';
 import Login from './pages/Login.jsx';
 import Account from './pages/Account.jsx';
+import Help from './pages/Help.jsx';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="success" element={<Success />} />
         <Route path="login" element={<Login />} />
         <Route path="account" element={<Account />} />
+        <Route path="help" element={<Help />} />
       </Route>
     </Routes>
   );
