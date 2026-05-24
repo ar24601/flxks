@@ -2,9 +2,9 @@
 import { useEffect, useCallback } from 'react';
 
 const PADDLE_CLIENT_TOKEN = import.meta.env.VITE_PADDLE_CLIENT_TOKEN || 'test_1b7c3b9c4b0fa1cf936eb4c091d';
-const PADDLE_MONTHLY_PRICE_ID = import.meta.env.VITE_PADDLE_MONTHLY_PRICE_ID || 'pri_01ksap1j1yrgxdq6hx9ppvppf5';
+//const PADDLE_MONTHLY_PRICE_ID = import.meta.env.VITE_PADDLE_MONTHLY_PRICE_ID || 'pri_01ksap1j1yrgxdq6hx9ppvppf5';
+const PADDLE_MONTHLY_PRICE_ID = import.meta.env.VITE_PADDLE_MONTHLY_PRICE_ID || 'pri_01kscsnbtdsggrn4c2adhdea7c';
 const PADDLE_YEARLY_PRICE_ID = import.meta.env.VITE_PADDLE_YEARLY_PRICE_ID || 'pri_01kd4jjj1410bzfa4d57be66zh';
-const PADDLE_DAILY_PRICE_ID = import.meta.env.VITE_PADDLE_DAILY_PRICE_ID || 'pri_01kscsnbtdsggrn4c2adhdea7c';
 
 export function openCheckout(plan = 'monthly') {
   if (typeof window === 'undefined') return;
