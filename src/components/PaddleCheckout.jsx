@@ -4,6 +4,7 @@ import { useEffect, useCallback } from 'react';
 const PADDLE_CLIENT_TOKEN = import.meta.env.VITE_PADDLE_CLIENT_TOKEN || 'test_1b7c3b9c4b0fa1cf936eb4c091d';
 const PADDLE_MONTHLY_PRICE_ID = import.meta.env.VITE_PADDLE_MONTHLY_PRICE_ID || 'pri_01ksap1j1yrgxdq6hx9ppvppf5';
 const PADDLE_YEARLY_PRICE_ID = import.meta.env.VITE_PADDLE_YEARLY_PRICE_ID || 'pri_01kd4jjj1410bzfa4d57be66zh';
+const PADDLE_DAILY_PRICE_ID = import.meta.env.VITE_PADDLE_DAILY_PRICE_ID || 'pri_01kscsnbtdsggrn4c2adhdea7c';
 
 export function openCheckout(plan = 'monthly') {
   if (typeof window === 'undefined') return;
@@ -11,7 +12,7 @@ export function openCheckout(plan = 'monthly') {
   const urlParams = new URLSearchParams(window.location.search);
   const sessionId = urlParams.get('session_id');
   const urlPlan = urlParams.get('plan');
-  
+
   if (sessionId) {
     console.log(`[Paddle] Initializing checkout for session: ${sessionId}`);
   }
@@ -20,7 +21,7 @@ export function openCheckout(plan = 'monthly') {
   const selectedPlan = urlPlan || plan;
   const priceId = selectedPlan === 'yearly' ? PADDLE_YEARLY_PRICE_ID : PADDLE_MONTHLY_PRICE_ID;
 
-  const checkoutSettings = { 
+  const checkoutSettings = {
     items: [{ priceId, quantity: 1 }],
     ...(sessionId && { customData: { session_id: sessionId } })
   };
