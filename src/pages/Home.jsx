@@ -150,6 +150,7 @@ export default function Home() {
           <div className="section-header">
             <h2>Simple, Transparent Pricing</h2>
             <p>Premium features without the premium price tag.</p>
+            <p style={{ marginTop: '1rem', fontWeight: '500', color: 'var(--accent-color)' }}>Available In-App Purchase Options:</p>
           </div>
           
           <div className="grid grid-cols-2" style={{ maxWidth: '900px', margin: '0 auto', gap: '2rem' }}>
@@ -172,9 +173,6 @@ export default function Home() {
                   <li><Shield className="check-icon"/> Future updates included</li>
                   <li><Shield className="check-icon"/> 100% Privacy</li>
                 </ul>
-              </div>
-              <div className="pricing-actions">
-                <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Free</button>
               </div>
             </div>
 
@@ -202,16 +200,18 @@ export default function Home() {
                     <li><Shield className="check-icon"/> 100% Privacy</li>
                   </ul>
                 </div>
-                <div className="pricing-actions">
-                  <button className="btn btn-primary w-full" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Try Free</button>
-                </div>
               </div>
             </div>
           </div>
           
-          <div className="commitment-note" style={{ marginTop: '2.5rem', opacity: 0.8 }}>
-            Purchase not required. Subscription can be purchased in the App.<br/>
-            No commitment • Cancel anytime
+          <div className="pricing-actions" style={{ marginTop: '2.5rem', textAlign: 'center' }}>
+            <button className="btn btn-primary" style={{ padding: '0.75rem 2.5rem', fontSize: '1.1rem' }} onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>
+              Download to Try Free
+            </button>
+            <div className="commitment-note" style={{ marginTop: '1rem', opacity: 0.8 }}>
+              Purchase not required. Subscription can be purchased in the App.<br/>
+              No commitment • Cancel anytime
+            </div>
           </div>
         </div>
       </section>
