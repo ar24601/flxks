@@ -23,8 +23,8 @@ export default function Home() {
               Experience Media Like <br /><span className="text-gradient">Never Before</span>
             </h1>
             <p className="hero-subtitle animate-fade-in delay-200">
-              A premium desktop multimedia viewer that puts you in complete control. 
-              No cloud uploads, no tracking. Just your photos and videos, beautifully displayed.
+              A premium desktop multimedia viewer that puts you in complete control.
+              Multiple sizes, multiple formats, mixed-media display and more.
             </p>
             <div className="hero-actions animate-fade-in delay-300">
               <button className="btn btn-primary" onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>Download Now</button>
@@ -33,7 +33,7 @@ export default function Home() {
               Free download includes limited functionality. Unlock all features directly in the app.
             </p>
           </div>
-          
+
           <div className="hero-visual animate-fade-in delay-300">
             <div className="app-mockup glass-panel">
               {/* Using a placeholder gradient for the image that we might replace with a generated mockup, 
@@ -44,11 +44,11 @@ export default function Home() {
                 </div>
               </div>
               <div className="mockup-body">
-                 <div className="mockup-image-grid">
-                    <div className="grid-item large"></div>
-                    <div className="grid-item"></div>
-                    <div className="grid-item"></div>
-                 </div>
+                <div className="mockup-image-grid">
+                  <div className="grid-item large"></div>
+                  <div className="grid-item"></div>
+                  <div className="grid-item"></div>
+                </div>
               </div>
             </div>
             {/* Glow effect */}
@@ -64,7 +64,7 @@ export default function Home() {
             <h2>Built for Privacy, Designed for You</h2>
             <p>Powerful features wrapped in an elegant interface.</p>
           </div>
-          
+
           <div className="grid grid-cols-3">
             <div className="feature-card glass-panel">
               <div className="feature-icon"><Shield /></div>
@@ -107,27 +107,27 @@ export default function Home() {
             <h2>Loved by Photographers and Creators</h2>
             <p>See what people are saying about flxks.</p>
           </div>
-          
+
           <div className="grid grid-cols-3" style={{ marginBottom: '4rem' }}>
             <div className="feature-card glass-panel" style={{ padding: '2rem', textAlign: 'left' }}>
               <div style={{ marginBottom: '1rem', color: '#ffb400', fontSize: '1.2rem', letterSpacing: '2px' }}>
-                 ★★★★★
+                ★★★★★
               </div>
               <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>"Love having control over my images and videos. Exactly what I was looking for and the minimalist interface is exceptional"</p>
               <p style={{ fontWeight: '600', fontSize: '0.95rem', opacity: 0.9 }}>— Sarah T.</p>
             </div>
-            
+
             <div className="feature-card glass-panel" style={{ padding: '2rem', textAlign: 'left' }}>
               <div style={{ marginBottom: '1rem', color: '#ffb400', fontSize: '1.2rem', letterSpacing: '2px' }}>
-                 ★★★★★
+                ★★★★★
               </div>
               <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>"The performance on massive video files is incredible. It handles my 4K footage without skipping a beat, all while looking like a premium native macOS app."</p>
               <p style={{ fontWeight: '600', fontSize: '0.95rem', opacity: 0.9 }}>— Marcus R.</p>
             </div>
-            
+
             <div className="feature-card glass-panel" style={{ padding: '2rem', textAlign: 'left' }}>
               <div style={{ marginBottom: '1rem', color: '#ffb400', fontSize: '1.2rem', letterSpacing: '2px' }}>
-                 ★★★★★
+                ★★★★★
               </div>
               <p style={{ fontStyle: 'italic', marginBottom: '1.5rem', lineHeight: '1.6' }}>"I love how minimalist it is. It gets completely out of the way and lets me focus entirely on my content. Easily the best media player I've ever used."</p>
               <p style={{ fontWeight: '600', fontSize: '0.95rem', opacity: 0.9 }}>— Elena K.</p>
@@ -151,16 +151,16 @@ export default function Home() {
             <h2>Simple, Transparent Pricing</h2>
             <p>Premium features without the premium price tag.</p>
           </div>
-          
+
           <div className="pricing-container glass-panel" style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 2rem 3rem 2rem', border: '1px solid var(--accent-color)' }}>
             <p style={{ textAlign: 'center', marginBottom: '2rem', fontWeight: '500', color: 'var(--accent-color)', fontSize: '1.1rem' }}>Available In-App Purchase Options:</p>
-            
+
             <div className="grid grid-cols-2" style={{ gap: '2rem' }}>
               {/* Monthly Plan */}
               <div className="pricing-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'rgba(255,255,255,0.03)', borderRadius: 'var(--border-radius-md)', padding: '2rem' }}>
                 <div className="pricing-header">
                   <h3>Monthly Subscription</h3>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem' }}>Free version available</p>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: '500', marginBottom: '0.5rem', visibility: 'hidden' }}>Free version available</p>
                   <div className="price">
                     <span className="currency">$</span>
                     <span className="amount">6.99</span>
@@ -170,10 +170,10 @@ export default function Home() {
                 </div>
                 <div className="pricing-features" style={{ flexGrow: 1 }}>
                   <ul>
-                    <li><Shield className="check-icon"/> Unlimited media viewing</li>
-                    <li><Shield className="check-icon"/> All display and navigation features</li>
-                    <li><Shield className="check-icon"/> Future updates included</li>
-                    <li><Shield className="check-icon"/> 100% Privacy</li>
+                    <li><Shield className="check-icon" /> Unlimited media viewing</li>
+                    <li><Shield className="check-icon" /> All display and navigation features</li>
+                    <li><Shield className="check-icon" /> Future updates included</li>
+                    <li><Shield className="check-icon" /> 100% Privacy</li>
                   </ul>
                 </div>
               </div>
@@ -192,21 +192,21 @@ export default function Home() {
                 </div>
                 <div className="pricing-features" style={{ flexGrow: 1 }}>
                   <ul>
-                    <li><Shield className="check-icon"/> <span style={{color: 'var(--accent-color)', fontWeight: 'bold'}}>Save 28%</span></li>
-                    <li><Shield className="check-icon"/> Everything included in the Monthly Subscription</li>
-                    <li><Shield className="check-icon"/> Future updates included</li>
-                    <li><Shield className="check-icon"/> 100% Privacy</li>
+                    <li><Shield className="check-icon" /> <span style={{ color: 'var(--accent-color)', fontWeight: 'bold' }}>Save 28%</span></li>
+                    <li><Shield className="check-icon" /> Everything included in the Monthly Subscription</li>
+                    <li><Shield className="check-icon" /> Future updates included</li>
+                    <li><Shield className="check-icon" /> 100% Privacy</li>
                   </ul>
                 </div>
               </div>
             </div>
-            
+
             <div className="pricing-actions" style={{ marginTop: '3rem', textAlign: 'center' }}>
               <button className="btn btn-primary" style={{ padding: '0.75rem 2.5rem', fontSize: '1.1rem' }} onClick={() => import('../utils/download.js').then(m => m.handleDownload())}>
                 Download to Try Free
               </button>
               <div className="commitment-note" style={{ marginTop: '1rem', opacity: 0.8 }}>
-                Purchase not required. Subscription can be purchased in the App.<br/>
+                Purchase not required. Subscription can be purchased in the App.<br />
                 No commitment • Cancel anytime
               </div>
             </div>

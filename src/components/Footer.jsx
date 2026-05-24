@@ -32,26 +32,25 @@ export default function Footer() {
               <span>Flxks</span>
             </Link>
             <p className="footer-desc">
-              Your media stays on your device, under your control. Built for privacy, designed for you.
+              Comprehensive Multimedia-Viewer. Built for privacy, designed for you.
             </p>
           </div>
-          
+
           <div className="footer-links-group">
             <div className="footer-column">
               <h3>Product</h3>
-              <Link 
+              <Link
                 to="/#features"
                 onClick={(e) => handleNavClick(e, 'features')}
               >
                 Features
               </Link>
-              <Link 
+              <Link
                 to="/#pricing"
                 onClick={(e) => handleNavClick(e, 'pricing')}
               >
                 Pricing
               </Link>
-              <a href="#">Download</a>
             </div>
             <div className="footer-column">
               <h3>Legal</h3>
@@ -61,7 +60,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        
+
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} flxks. All rights reserved.</p>
         </div>
