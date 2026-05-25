@@ -53,6 +53,7 @@ Flxks is built for power users. Below is the complete reference of all available
 | `Cmd + K` | Show in-app command reference |
 | `Cmd + O` | Open media folders |
 | `Cmd + N` | Add new window / screen *(Premium)* |
+| `Cmd + Option + R` | Restore previous session layout *(Premium)* |
 | `Cmd + 8` | Create new image quadrant |
 | `Cmd + 9` | Create new video quadrant |
 | `Cmd + 5` | Toggle quadrant type (image ↔ video) |
