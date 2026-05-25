@@ -4,11 +4,15 @@ Welcome to the Flxks User Guide! Flxks is a premium desktop multimedia viewer th
 
 ## Getting Started
 
-1. **Launch Flxks** from your Applications folder.
-2. **Open Media**: Simply drag and drop any folder containing images or videos into the app, or use `Cmd + O` to select files.
-3. **Navigate**: Press Space Bar to Play/Pause image slideshow and video playback. Use the arrow keys, `J/K/L or N` keys to glide through your media effortlessly.
+1. **Launch Flxks**: from your Applications folder.
+2. **Open Media**: Simply drag and drop any folder containing images or videos onto the app, or use `Cmd + O` to select a folder.
+3. **Add media**: CMD+8 for images, CMD+9 for videos
+4. **Navigate**: Press Space Bar to Play/Pause image slideshow and video playback. Use the `J, K, L or N` keys to glide through your media effortlessly.
 
-### Mastering Keyboard Navigation
+## Selecting a Quadrant ##
+To use keyboard commands, hover over a quadrant, then use keyboard commands.
+
+### Mastering Keyboard Navigatio
 Flxks is specifically designed to be used without a mouse. Once your media is loaded, your keyboard becomes the most powerful way to control the app:
 
 **Core Playback & Navigation:**
@@ -17,6 +21,7 @@ Flxks is specifically designed to be used without a mouse. Once your media is lo
 - **`N`**: Jump to the next video or the next image in a sequence.
 - **`R`**: Toggle between Random and Sequential playback.
 - **`S`**: Toggle Series mode to intelligently play files sequentially based on their trailing numbers.
+- **`B`**: jumps to the last media file displayed.
 
 **Media Management & Tools:**
 - **`T`**: Instantly take a high-quality snapshot of the current video frame.
